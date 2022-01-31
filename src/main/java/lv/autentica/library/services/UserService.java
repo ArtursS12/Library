@@ -1,8 +1,8 @@
 package lv.autentica.library.services;
 
-import lv.autentica.library.dto.UserDto;
+import lv.autentica.library.dto.ClientDto;
 import lv.autentica.library.entities.Role;
-import lv.autentica.library.entities.User;
+import lv.autentica.library.entities.Client;
 import lv.autentica.library.repositories.RoleRepository;
 import lv.autentica.library.repositories.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
