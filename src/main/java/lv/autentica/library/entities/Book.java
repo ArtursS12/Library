@@ -1,13 +1,13 @@
 package lv.autentica.library.entities;
 
-public class Books {
+public class Book {
 
     private String Name;
     private String Author ;
     private Integer ReleaseYear;
     private String Publisher;
 
-    public Books(String name, String author, Integer releaseYear, String publisher) {
+    public Book(String name, String author, Integer releaseYear, String publisher) {
         Name = name;
         Author = author;
         ReleaseYear = releaseYear;

@@ -18,6 +18,9 @@ public class AuthorService {
         authorRepository.save(newAuthor);
     }
 
+    public List<Author> getAllAuthors() {
+        return authorRepository.findAll();
+    }
 
     public Author getAuthor(Long id) {
         return authorRepository.findById(id).orElse(null);

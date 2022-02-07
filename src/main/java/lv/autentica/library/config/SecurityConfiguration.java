@@ -1,6 +1,5 @@
 package lv.autentica.library.config;
 
-import lv.autentica.library.entities.Client;
 import lv.autentica.library.services.UserService;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;

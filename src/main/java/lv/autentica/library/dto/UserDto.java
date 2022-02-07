@@ -4,7 +4,7 @@ import javax.validation.constraints.AssertTrue;
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotEmpty;
 
-public class ClientDto {
+public class UserDto {
 
     @NotEmpty
     private String firstName;
