@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" th:replace="~{layout :: main-fragment(
+                                                ~{:: title},
+                                                ~{},
+                                                ~{:: #content}
+                                               )}">
+<head>
+    <title th:text="${book.title}"></title>
+    <meta charset="utf-8"/>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+</head>
+<style>
+.backbtn {border-radius: 4px;font-size: 20px;}
+</style>
+</style>
+<body>
+<div class="container py-3">
+    <div id="content">
+        <div class="alert alert-danger" role="alert" th:if="${book == null}">
+            Book not found
+        </div>
+        <div class="card my-2" th:if="${book != null}">
+            <h5 class="card-header" th:text="${book.title}"></h5>
+            <div class="row g-0">
+
+                <div class="col-md-9">
+                    <div class="card-body">
+                        <div class="row card-text">
+                            <div class="col-2 ">Authors:</div>
+                            <div class="col-10">
+                                <a th:each="author, iter: ${book.authors}"
+                                   th:href="@{|/authors/${author.id}|}" class="link-dark"
+                                   th:text="!${iter.last} ? ${author} + ', ': ${author}"></a>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-2 ">ISBN:</div>
+                            <div class="col-10" th:text="${book.ISBN}"></div>
+                        </div>
+                        <div class="row">
+                            <div class="col-2 ">Pages:</div>
+                            <div class="col-10" th:text="${book.pageCount}"></div>
+                        </div>
+                        <div class="row">
+                            <div class="col-2 ">Publishing Year:</div>
+                            <div class="col-10" th:text="${book.year}"></div>
+                        </div>
+
+                        <div class="row">
+                            <div class="col-2 ">Language:</div>
+                            <div class="col-10" th:text="#{${book.language}}"></div>
+                        </div>
+                        <div class="row">
+                            <div class="col-2 ">Summary:</div>
+                            <div class="col-10" th:text="${book.summary}"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row my-2">
+            <div class="col-sm-6">
+
+                <button type="back" class="button backbtn" onclick="history.back()" >Back</button>
+                <a href = "BookEdit.html">
+                         <button type="edit" class="button backbtn"  >Edit</button>
+                </a>
+
+            </div>
+        </div>
+    </div>
+</div>
+
+</body>
+</html>
+</div>
+</div>
+
+</body>
+</html>

@@ -75,7 +75,7 @@ public class BookController {
     }
 
     @PostMapping("books/search")
-    private String seacrhBooks(Model model, @ModelAttribute BookDto book) throws Exception {
+    private String searchBooks(Model model, @ModelAttribute BookDto book) throws Exception {
         Collection<Book> foundBooks = bookService.searchBooks(book);
         model.addAttribute("books", foundBooks);
         return "index";

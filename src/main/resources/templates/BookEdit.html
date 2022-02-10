@@ -5,24 +5,26 @@
                                                 ~{:: #content}
                                                )}">
 <head>
-    <title>Book search</title>
-
     <meta charset="utf-8"/>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
-
+    <title th:text="${book.title}"></title>
+</head>
 <body>
 <div class="container py-5">
     <a href="Home.html"><button class="buttonback"  >Home</button></a>
 
-    <h1>Book search </h1>
+<h1>Book edit </h1>
 
-    <hr>
-
+<hr>
+<div class="container py-3">
     <div id="content">
-        <form id="searchBooksForm" action="#" th:action="@{/books/search}" th:object="${book}" method="post" >
+        <form id="newBookForm" action="#" th:action="@{/books/save}" enctype="multipart/form-data" th:object="${book}" method="post"
+              class="needs-validation" novalidate >
+            <input type="hidden" th:field="*{id}" />
+
             <div class="mb-3">
                 <label for="title" class="form-label">Title</label>
-                <input type="text" class="form-control" id="title" th:field="*{title}"/>
+                <input type="text" class="form-control" id="title" required th:field="*{title}"/>
             </div>
             <div class="mb-3">
                 <label for="isbn" class="form-label">ISBN</label>
@@ -31,36 +33,12 @@
             <div class="row">
                 <div class="col">
                     <div class="mb-3">
-                        <label for="publishYear" class="form-label">Publishing Date</label>
-                        <input type="date" class="form-control" id="publishYear"  th:field="*{publishingDate}" />
-                        <div id="publishYearHelp" class="form-text">Format - mm/dd/yyyy</div>
-                    </div>
-                </div>
-            </div>
-            <div class="row">
-                <div class="col">
-                    <div class="mb-3">
                         <label for="authors" class="form-label">Authors</label>
-                        <select id="authors" th:field="*{authors}" multiple="multiple" class="custom-select form-control" >
+                        <select id="authors" th:field="*{authors}" multiple="multiple" class="custom-select form-control" required>
                             <option th:each="author : ${allAuthors}"
                                     th:value="${{author}}"
                                     th:text="${author}">
                             </option>
-                        </select>
-                    </div>
-                </div>
-                <div class="col">
-                    <div class="mb-3">
-                        <label for="genre" class="form-label">Genre</label>
-                        <select id="genre" name="language" class="form-select" aria-label="Genre" th:field="*{genre}">
-                            <option value="null">(No genre)</option>
-                            <option value="Action">Action</option>
-                            <option value="Detective">Detective</option>
-                            <option value="Fantasy">Fantasy</option>
-                            <option value="Horror">Horror</option>
-                            <option value="Romance">Romance</option>
-                            <option value="Sci-Fi">Science fiction</option>
-                            <option value="Thrillers">Thrillers</option>
                         </select>
                     </div>
                 </div>
@@ -75,16 +53,34 @@
                     </div>
                 </div>
             </div>
-            <button type="submit" class="btn btn-primary">Search</button>
-            <button class="btn btn-secondary" type="reset" >Clear form</button>
-
+            <div class="row">
+                <div class="col">
+                    <div class="mb-3">
+                        <label for="publishYear" class="form-label">Publishing Date</label>
+                        <input type="date" class="form-control" id="publishYear" aria-describedby="publishYearHelp" th:field="*{publishingDate}"/>
+                        <div id="publishYearHelp" class="form-text">Format - mm/dd/yyyy</div>
+                    </div>
+                </div>
+                <div class="col">
+                    <div class="mb-3">
+                        <label for="pageCount" class="form-label">Page count</label>
+                        <input type="number" min="0" class="form-control" id="pageCount" th:field="*{pageCount}"/>
+                    </div>
+                </div>
+            </div>
+            <div class="mb-3">
+                <label for="summary" class="form-label">Summary</label>
+                <textarea rows="3" class="form-control" id="summary" name="summary" aria-describedby="summaryHelp" required th:field="*{summary}"></textarea>
+                <div id="summaryHelp" class="form-text">Maximum length - 4000 symbols.</div>
+            </div>
+            <button type="submit" class="btn btn-primary" @ >Submit</button>
         </form>
     </div>
 </div>
-
+</div>
 </body>
 <style>
-    .buttonback {
+      .buttonback {
   background-color: #333;
   border: none;
   border-radius: 5px;
@@ -102,5 +98,4 @@
 }
 .buttonback:hover {opacity: 1}
 </style>
-
 </html>
